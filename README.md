@@ -15,7 +15,7 @@ cd tmodloader-docker
 
 3. Launch detached using docker compose
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 4. Attach to tModLoader container
@@ -34,7 +34,7 @@ To detach from the container press <kbd>Ctrl</kbd> + <kbd>P</kbd> + <kbd>Q</kbd>
 
 To shutdown the docker use:
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ## Configure
@@ -63,7 +63,30 @@ Example:
 - `3` → number of backups to keep in this folder
 
 ---
+### Updating
+To avoid mod incompatibilities updating is done manually, following these simple steps: 
+<br>
+1. Shutdown the Docker
+```bash 
+docker compose down
+```
 
+2. Update the TML_VERSION
+```bash 
+export TML_VERSION=v2xxx.y.z
+```
+where `v.2xxx.y.z` is the target version
+
+3. Re-Build the Docker
+```bash 
+docker compose build --no-cache
+```
+4. Re-Launch your Docker
+```bash
+docker compose up -d
+```
+
+---
 ### Mods
 To add mods, copy the `.tmod` files directly into `tModLoader/Mods` folder (generated after first start).
 

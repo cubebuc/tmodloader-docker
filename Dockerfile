@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0
 
-ARG TML_VERSION=v2025.09.3.3
+ARG TML_VERSION
 
 WORKDIR /app
 
