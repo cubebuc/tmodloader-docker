@@ -4,16 +4,17 @@ services:
   tml:
     image: tmodloader
     container_name: tml
-    build: .
+    build:
+      context: .
+      args:
+        TML_VERSION: ${TML_VERSION:-v2025.10.3.1}
     restart: unless-stopped
     user: "1001:1001"
     ports:
       - "7777:7777"
     volumes:
       - .:/app/data
-
     command: ["./start-tModLoaderServer.sh", "-savedirectory", "/app/data", "-config", "/app/data/serverconfig.txt"]
-    
     stdin_open: true
     tty: true
 
@@ -25,7 +26,6 @@ services:
       - .:/app/data
     environment:
       - TZ=Europe/Prague
-
     command: >
       /bin/sh -c "
       cp /app/data/crontab /var/spool/cron/crontabs/root &&
@@ -34,6 +34,5 @@ services:
       echo 'Starting Cron...' &&
       exec crond -f -d 8
       "
-
     stdin_open: true
     tty: true
