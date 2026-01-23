@@ -17,6 +17,6 @@ tar -czf $FILE -C /app/data/tModLoader Worlds
 echo "[$TYPE] Cleaning up old backups, keeping last $KEEP..."
 ls -tp $TARGET/*.tar.gz | grep -v '/$' | tail -n +$(($KEEP + 1)) | xargs -I {} rm -- {}
 
-chown -R 1001:1001 $BACKUP_DIR
+#chown -R 1001:1001 $BACKUP_DIR
 
 echo "[$TYPE] Done."
